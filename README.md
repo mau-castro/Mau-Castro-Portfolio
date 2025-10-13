@@ -1,6 +1,6 @@
-# Mau Castro Portfolio
+# 🌟 Mau Castro Portfolio
 
-Proyecto frontend desarrollado con Vite, React, TypeScript y Tailwind CSS.
+Portfolio personal profesional desarrollado con las últimas tecnologías web.
 
 ## 🚀 Tecnologías
 
@@ -8,6 +8,15 @@ Proyecto frontend desarrollado con Vite, React, TypeScript y Tailwind CSS.
 - **React 18** - Biblioteca de UI
 - **TypeScript** - Tipado estático para JavaScript
 - **Tailwind CSS** - Framework de CSS utility-first
+
+## ✨ Características
+
+- 🌓 **Modo Oscuro/Claro** - Cambio de tema con persistencia
+- 🌐 **Multiidioma** - Soporte para Español e Inglés
+- 📱 **Responsive** - Diseño adaptable a todos los dispositivos
+- 🎨 **Animaciones** - Transiciones y animaciones suaves
+- ⚡ **Performance** - Optimizado para velocidad de carga
+- 🎯 **Secciones Completas** - Hero, About, Skills, Projects, Contact
 
 ## 📦 Instalación
 
@@ -45,18 +54,77 @@ Ejecuta ESLint para verificar el código
 
 ```
 .
-├── public/          # Archivos estáticos
-├── src/             # Código fuente
-│   ├── assets/      # Recursos (imágenes, fuentes, etc.)
-│   ├── App.tsx      # Componente principal
-│   ├── main.tsx     # Punto de entrada
-│   └── index.css    # Estilos globales (Tailwind)
-├── index.html       # HTML principal
-├── package.json     # Dependencias y scripts
-├── tsconfig.json    # Configuración de TypeScript
-├── vite.config.ts   # Configuración de Vite
-└── tailwind.config.js # Configuración de Tailwind CSS
+├── public/              # Archivos estáticos
+├── src/
+│   ├── components/      # Componentes React
+│   │   ├── Header.tsx           # Barra de navegación
+│   │   ├── HeroSection.tsx      # Sección de bienvenida
+│   │   ├── AboutSection.tsx     # Sección sobre mí
+│   │   ├── SkillsSection.tsx    # Sección de habilidades
+│   │   ├── ProjectCard.tsx      # Tarjeta de proyecto
+│   │   ├── ImageCarousel.tsx    # Carrusel de imágenes
+│   │   ├── CategoryTabs.tsx     # Filtros de categoría
+│   │   ├── TechBadge.tsx        # Badge de tecnología
+│   │   └── ContactSection.tsx   # Sección de contacto
+│   ├── contexts/        # Contextos de React
+│   │   ├── ThemeContext.tsx     # Contexto de tema
+│   │   └── LanguageContext.tsx  # Contexto de idioma
+│   ├── data/            # Datos
+│   │   └── projects.ts          # Datos de proyectos
+│   ├── App.tsx          # Componente principal
+│   ├── main.tsx         # Punto de entrada
+│   └── index.css        # Estilos globales
+├── index.html           # HTML principal
+├── package.json         # Dependencias y scripts
+├── tsconfig.json        # Configuración de TypeScript
+├── vite.config.ts       # Configuración de Vite
+└── tailwind.config.js   # Configuración de Tailwind
 ```
+
+## 🎨 Personalización
+
+### 1. Información Personal
+
+**Hero Section** (`src/components/HeroSection.tsx`)
+- Actualiza tu nombre y título profesional en las traducciones
+
+**About Section** (`src/components/AboutSection.tsx`)
+- Reemplaza el emoji 👨‍💻 con tu foto personal
+- Actualiza las estadísticas (años de experiencia, proyectos, etc.)
+
+**Contact Section** (`src/components/ContactSection.tsx`)
+- Actualiza tus enlaces de redes sociales (GitHub, LinkedIn, Email)
+
+### 2. Traducciones
+
+Edita `src/contexts/LanguageContext.tsx` para personalizar todos los textos:
+- Sección Hero
+- Sección About
+- Sección Skills
+- Sección Projects
+- Sección Contact
+
+### 3. Proyectos
+
+Edita `src/data/projects.ts`:
+- Reemplaza los proyectos de ejemplo con tus proyectos reales
+- Actualiza imágenes, descripciones y tecnologías
+- Categoriza tus proyectos (frontend, backend, fullstack)
+
+### 4. Habilidades
+
+Edita `src/components/SkillsSection.tsx`:
+- Personaliza las habilidades y niveles según tu experiencia
+- Agregar o quitar tecnologías
+- Ajustar las categorías (Frontend, Backend, Tools)
+
+### 5. Colores y Estilos
+
+Edita `tailwind.config.js` para personalizar:
+- Colores del tema
+- Fuentes
+- Espaciados
+- Y más configuraciones de Tailwind
 
 ## 🔮 Preparado para Backend
 

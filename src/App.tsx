@@ -1,58 +1,77 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import Header from './components/Header';
+import HeroSection from './components/HeroSection';
+import AboutSection from './components/AboutSection';
+import SkillsSection from './components/SkillsSection';
+import CategoryTabs from './components/CategoryTabs';
+import ProjectCard from './components/ProjectCard';
+import ContactSection from './components/ContactSection';
+import { sampleProjects } from './data/projects';
+import { useLanguage } from './contexts/LanguageContext';
+
+type Category = 'all' | 'fullstack' | 'apis' | 'ia';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [activeCategory, setActiveCategory] = useState<Category>('all');
+  const { t } = useLanguage();
+
+  const filteredProjects = activeCategory === 'all'
+    ? sampleProjects
+    : sampleProjects.filter(project => project.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-      <div className="max-w-2xl w-full bg-white rounded-2xl shadow-2xl p-8 md:p-12">
-        <div className="text-center">
-          <h1 className="text-5xl font-bold text-gray-800 mb-4">
-            Mau Castro
-          </h1>
-          <p className="text-xl text-gray-600 mb-8">
-            Portfolio Frontend
-          </p>
-          
-          <div className="flex items-center justify-center gap-4 mb-8">
-            <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-              Vite
-            </span>
-            <span className="px-4 py-2 bg-cyan-100 text-cyan-700 rounded-full text-sm font-medium">
-              React
-            </span>
-            <span className="px-4 py-2 bg-blue-100 text-blue-900 rounded-full text-sm font-medium">
-              TypeScript
-            </span>
-            <span className="px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">
-              Tailwind
-            </span>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+      <Header />
+      
+      {/* Hero Section */}
+      <HeroSection />
+
+      {/* About Section */}
+      <AboutSection />
+
+      {/* Skills Section */}
+      <SkillsSection />
+
+      {/* Projects Section */}
+      <section id="projects" className="py-20 px-6 bg-white dark:bg-gray-800 transition-colors duration-200">
+        <div className="container mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+              {t('projects.title')}
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              {t('projects.subtitle')}
+            </p>
           </div>
 
-          <div className="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl p-8 mb-8">
-            <p className="text-white text-lg mb-4">
-              ¡Contador de prueba!
-            </p>
-            <button 
-              onClick={() => setCount((count) => count + 1)}
-              className="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-            >
-              Contador: {count}
-            </button>
-          </div>
+          {/* Category Tabs */}
+          <CategoryTabs
+            activeCategory={activeCategory}
+            onCategoryChange={setActiveCategory}
+          />
 
-          <div className="text-gray-600">
-            <p className="mb-4">
-              Edita <code className="bg-gray-100 px-2 py-1 rounded text-sm">src/App.tsx</code> para empezar a construir tu portfolio
-            </p>
-            <p className="text-sm">
-              ✨ Tailwind CSS está configurado y listo para usar
-            </p>
+          {/* Projects Grid */}
+          <div className="space-y-8">
+            {filteredProjects.length > 0 ? (
+              filteredProjects.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-gray-500 dark:text-gray-400 text-lg">
+                  No hay proyectos en esta categoría
+                </p>
+              </div>
+            )}
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Contact Section */}
+      <ContactSection />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
