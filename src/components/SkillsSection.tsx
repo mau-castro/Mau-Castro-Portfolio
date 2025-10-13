@@ -19,34 +19,32 @@ const SkillsSection = () => {
     {
       title: t('skills.frontend'),
       skills: [
-        { name: 'React', level: 90 },
+        { name: 'React + Vite', level: 90 },
+        { name: 'JavaScript', level: 90 },
+        { name: 'SASS/CSS', level: 90 },
         { name: 'TypeScript', level: 85 },
-        { name: 'JavaScript', level: 95 },
-        { name: 'HTML/CSS', level: 90 },
         { name: 'Tailwind CSS', level: 85 },
-        { name: 'Vue.js', level: 75 },
       ],
     },
     {
       title: t('skills.backend'),
       skills: [
-        { name: 'Node.js', level: 85 },
         { name: 'Python', level: 90 },
-        { name: 'Express', level: 80 },
-        { name: 'FastAPI', level: 85 },
-        { name: 'PostgreSQL', level: 80 },
-        { name: 'MongoDB', level: 75 },
+        { name: 'Flask', level: 80 },
+        { name: 'FastAPI', level: 80 },
+        { name: 'MySQL', level: 80 },
+        { name: 'SkLearn', level: 70 },
       ],
     },
     {
       title: t('skills.tools'),
       skills: [
         { name: 'Git', level: 90 },
-        { name: 'Docker', level: 75 },
         { name: 'VS Code', level: 95 },
-        { name: 'Figma', level: 70 },
-        { name: 'Postman', level: 85 },
-        { name: 'Linux', level: 80 },
+        { name: 'Linux', level: 85 },
+        { name: 'Nginx', level: 85 },
+        { name: 'Docker', level: 75 },
+        { name: 'Cloud Services (AWS, GCP, Azure)', level: 70 },
       ],
     },
   ];
@@ -110,7 +108,7 @@ const SkillsSection = () => {
           <p className="text-gray-600 dark:text-gray-400">
             {t('skills.learning')}{' '}
             <span className="font-semibold text-blue-600 dark:text-blue-400">
-              AWS, Kubernetes, {language === 'es' ? 'y más' : 'and more'}...
+              AWS, GCP, Azure Cloud, {language === 'es' ? 'IA y más' : 'AI and more'}...
             </span>
           </p>
         </div>
