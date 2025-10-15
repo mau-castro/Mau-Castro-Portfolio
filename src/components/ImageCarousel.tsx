@@ -25,17 +25,24 @@ const ImageCarousel = ({ images, alt }: ImageCarouselProps) => {
   };
 
   return (
-    <div className="relative w-full h-full bg-gray-200 dark:bg-gray-800 rounded-lg overflow-hidden group">
-      {/* Main Image */}
-      <div className="relative h-full">
-        <img
-          src={images[currentIndex]}
-          alt={`${alt} - ${currentIndex + 1}`}
-          className="w-full h-full object-cover"
-        />
-        
-        {/* Gradient Overlays for better button visibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+    // Use a fixed aspect ratio so all images render the same size
+    <div className="relative w-full bg-gray-200 dark:bg-gray-800 rounded-lg overflow-hidden group">
+      {/* Aspect ratio container (16:9) - adjust with Tailwind `aspect-*` utilities if available */}
+      <div className="relative w-full aspect-video bg-gray-200 dark:bg-gray-800">
+        {/* Stack all images absolutely and transition opacity for crossfade */}
+        {images.map((src, index) => (
+          <img
+            key={index}
+            src={src}
+            alt={`${alt} - ${index + 1}`}
+            className={`absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-500 ${
+              index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            }`}
+          />
+        ))}
+
+        {/* Gradient Overlays for better button visibility (non-blocking) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       </div>
 
       {/* Navigation Arrows */}
@@ -44,7 +51,7 @@ const ImageCarousel = ({ images, alt }: ImageCarouselProps) => {
           {/* Previous Button */}
           <button
             onClick={goToPrevious}
-            className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform hover:scale-110"
+            className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform hover:scale-110 z-20 pointer-events-auto"
             aria-label="Previous image"
           >
             <svg
@@ -65,7 +72,7 @@ const ImageCarousel = ({ images, alt }: ImageCarouselProps) => {
           {/* Next Button */}
           <button
             onClick={goToNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform hover:scale-110"
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform hover:scale-110 z-20 pointer-events-auto"
             aria-label="Next image"
           >
             <svg
@@ -87,7 +94,7 @@ const ImageCarousel = ({ images, alt }: ImageCarouselProps) => {
 
       {/* Dots Indicator */}
       {images.length > 1 && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
           {images.map((_, index) => (
             <button
               key={index}
