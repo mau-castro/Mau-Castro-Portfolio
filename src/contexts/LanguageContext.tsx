@@ -49,6 +49,8 @@ const translations: Translations = {
     // Projects Section
     'projects.title': 'Mis Proyectos',
     'projects.subtitle': 'Una selección de mis trabajos más recientes',
+  'projects.technologies': 'Tecnologías',
+  'projects.empty': 'No hay proyectos en esta categoría',
     
     // Contact Section
     'contact.title': '¡Trabajemos Juntos!',
@@ -100,6 +102,8 @@ const translations: Translations = {
     // Projects Section
     'projects.title': 'My Projects',
     'projects.subtitle': 'A selection of my most recent work',
+  'projects.technologies': 'Technologies',
+  'projects.empty': 'There are no projects in this category',
     
     // Contact Section
     'contact.title': 'Let\'s Work Together!',
