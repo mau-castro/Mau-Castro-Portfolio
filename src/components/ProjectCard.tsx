@@ -29,7 +29,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
   const { language, t } = useLanguage();
   return (
     <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-      <div className="grid md:grid-cols-2 gap-6 p-6">
+      <div className="grid md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 p-4 sm:p-5 md:p-6">
         {/* Image Carousel Section */}
         <div className="h-64 md:h-full min-h-[300px]">
           <ImageCarousel images={project.images} alt={project.title[language]} />
@@ -38,11 +38,11 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         {/* Content Section */}
         <div className="flex flex-col justify-between">
           {/* Title and Description */}
-          <div className="mb-6">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+          <div className="mb-4 md:mb-6">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">
               {project.title[language]}
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm sm:text-base">
               {project.description[language]}
             </p>
           </div>
