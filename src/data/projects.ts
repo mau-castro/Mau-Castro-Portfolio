@@ -41,6 +41,10 @@ import sarampionImg2 from '../assets/Proyectos/SarampionFase1/Imagen2.png';
 import sarampionImg3 from '../assets/Proyectos/SarampionFase1/Imagen3.png';
 import sarampionImg4 from '../assets/Proyectos/SarampionFase1/Imagen4.png';
 
+// Imágenes de AI Agent (LLM local + RAG)
+import aiAgentImg1 from '../assets/Proyectos/AIAgent/Imagen1.png';
+import aiAgentImg2 from '../assets/Proyectos/AIAgent/imagen2.png';
+
 const saviImages = [saviImg1, saviImg2, saviImg3, saviImg4, saviImg5];
 const companyErpImages = [companyErpImg1, companyErpImg2, companyErpImg3, companyErpImg4, companyErpImg5];
 const aedeImages = [aedeImg1, aedeImg2, aedeImg3, aedeImg4, aedeImg5];
@@ -49,6 +53,7 @@ const scrapBancoImages = [scrapBancoImg1, scrapBancoImg2];
 const tumorGradeImages = [tumorGradeImg1, tumorGradeImg2];
 const chatbotLLMImages = [chatbotLLMImg1];
 const sarampionImages = [sarampionImg1, sarampionImg2, sarampionImg3, sarampionImg4];
+const aiAgentImages = [aiAgentImg1, aiAgentImg2];
 
 export const sampleProjects: Project[] = [
   {
@@ -151,6 +156,32 @@ export const sampleProjects: Project[] = [
   },
   {
     id: 6,
+    title: {
+      es: 'AI Agent Local con RAG',
+      en: 'Local AI Agent with RAG',
+    },
+    description: {
+      es:
+        'Chatbot conversacional con arquitectura RAG ejecutada de forma local mediante Ollama, diseñado para responder preguntas con contexto documental y reducir alucinaciones. El sistema integra pipeline de ingestión, limpieza y fragmentación de documentos, generación de embeddings semánticos y recuperación por similitud en Qdrant, con control de relevancia para filtrar contexto ruidoso. Incluye API en FastAPI, persistencia de conversaciones, panel de entrenamiento para carga y administración de documentos, soporte de múltiples formatos (incluyendo OCR para PDFs escaneados) y una capa de agente con tools extensibles.',
+      en:
+        'Conversational chatbot powered by a fully local RAG architecture using Ollama, built to deliver context-grounded answers and reduce hallucinations. The system includes a document ingestion, cleaning, and chunking pipeline, semantic embeddings generation, and similarity retrieval in Qdrant with relevance thresholding to avoid noisy context. It provides a FastAPI backend, conversation persistence, a training panel for document upload and management, multi-format support (including OCR for scanned PDFs), and an agent layer with extensible tool execution.',
+    },
+    images: aiAgentImages,
+    technologies: [
+      { name: 'Python', color: 'yellow' },
+      { name: 'FastAPI', color: 'green' },
+      { name: 'Ollama', color: 'indigo' },
+      { name: 'Llama 3', color: 'red' },
+      { name: 'RAG', color: 'purple' },
+      { name: 'Qdrant', color: 'cyan' },
+      { name: 'PostgreSQL', color: 'blue' },
+      { name: 'React', color: 'cyan' },
+      { name: 'OCR', color: 'pink' },
+    ],
+    category: 'ia',
+  },
+  {
+    id: 7,
     title: { es: 'Predicción de Clasificación de Gliomas (AI/MLOps)', en: 'Glioma Grade Classification (AI/MLOps)' },
     description: {
       es:
@@ -175,7 +206,7 @@ export const sampleProjects: Project[] = [
     category: 'ia',
   },
   {
-    id: 7,
+    id: 8,
     title: { es: 'Chatbot Especializado en Farmacología (LLM + RAG)', en: 'Pharmacology Chatbot (LLM + RAG)' },
     description: {
       es:
@@ -198,7 +229,7 @@ export const sampleProjects: Project[] = [
     category: 'ia',
   },
   {
-    id: 8,
+    id: 9,
     title: {
       es: 'Predicción de brotes de sarampión en México (2010-2023)',
       en: 'Prediction of Measles Outbreaks in Mexico (2010-2023)',

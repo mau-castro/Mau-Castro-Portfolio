@@ -1,5 +1,5 @@
 import { useLanguage } from '../contexts/LanguageContext';
-import ProfilePhoto from '../assets/Imagenes/ProfilePhoto.jpeg';
+import ProfilePhoto from '../assets/Imagenes/ProfilePhoto.jpg';
 const AboutSection = () => {
   const { t } = useLanguage();
 
