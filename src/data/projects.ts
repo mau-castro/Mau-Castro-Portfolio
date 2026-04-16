@@ -35,6 +35,12 @@ import tumorGradeImg2 from '../assets/Proyectos/TumorGrade/Imagen2.png';
 // Imágenes del Chatbot LLM + RAG
 import chatbotLLMImg1 from '../assets/Proyectos/ChatbotLLM/Imagen1.png';
 
+// Imágenes de Predicción de brotes de sarampión
+import sarampionImg1 from '../assets/Proyectos/SarampionFase1/Imagen1.png';
+import sarampionImg2 from '../assets/Proyectos/SarampionFase1/Imagen2.png';
+import sarampionImg3 from '../assets/Proyectos/SarampionFase1/Imagen3.png';
+import sarampionImg4 from '../assets/Proyectos/SarampionFase1/Imagen4.png';
+
 const saviImages = [saviImg1, saviImg2, saviImg3, saviImg4, saviImg5];
 const companyErpImages = [companyErpImg1, companyErpImg2, companyErpImg3, companyErpImg4, companyErpImg5];
 const aedeImages = [aedeImg1, aedeImg2, aedeImg3, aedeImg4, aedeImg5];
@@ -42,6 +48,7 @@ const platafideImages = [platafideImg1];
 const scrapBancoImages = [scrapBancoImg1, scrapBancoImg2];
 const tumorGradeImages = [tumorGradeImg1, tumorGradeImg2];
 const chatbotLLMImages = [chatbotLLMImg1];
+const sarampionImages = [sarampionImg1, sarampionImg2, sarampionImg3, sarampionImg4];
 
 export const sampleProjects: Project[] = [
   {
@@ -187,6 +194,28 @@ export const sampleProjects: Project[] = [
       { name: 'RAG (Retrieval-Augmented Generation)', color: 'teal' },
       { name: 'Docker', color: 'blue' },
       { name: 'PromptTemplate', color: 'indigo' },
+    ],
+    category: 'ia',
+  },
+  {
+    id: 8,
+    title: {
+      es: 'Predicción de brotes de sarampión en México (2010-2023)',
+      en: 'Prediction of Measles Outbreaks in Mexico (2010-2023)',
+    },
+    description: {
+      es:
+        'El sarampión, a pesar de estar incluido en los programas de vacunación, continúa representando una amenaza debido a la disminución en la cobertura de vacunación y la movilidad de la población. El objetivo fue desarrollar un modelo de Machine Learning capaz de anticipar brotes epidemiológicos utilizando datos públicos disponibles de manera responsable y acorde a su alcance real. Se busca apoyar la toma de decisiones preventivas que ayuden a evitar muertes y complicaciones en la población más vulnerable (niños menores de 5 años).',
+      en:
+        'Measles, despite being included in vaccination programs, continues to pose a threat due to declining vaccination coverage and population mobility. The goal was to develop a Machine Learning model capable of anticipating epidemiological outbreaks using publicly available data in a responsible manner and aligned with its real scope. The aim is to support preventive decision-making that can help avoid deaths and complications in the most vulnerable population (children under 5 years old).',
+    },
+    images: sarampionImages,
+    technologies: [
+      { name: 'Python', color: 'yellow' },
+      { name: 'FastAPI', color: 'green' },
+      { name: 'MLOps', color: 'purple' },
+      { name: 'Prediction Models', color: 'indigo' },
+      { name: 'Data Engineering', color: 'cyan' },
     ],
     category: 'ia',
   },
