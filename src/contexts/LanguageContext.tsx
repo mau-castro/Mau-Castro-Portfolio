@@ -21,7 +21,7 @@ const translations: Translations = {
     
     // Hero Section
     'hero.greeting': '¡Hola! Soy',
-    'hero.title': 'Desarrollador Full Stack',
+    'hero.title': 'Consultor de IA y Software ',
     'hero.description': 'Apasionado por crear experiencias web excepcionales y soluciones tecnológicas innovadoras. Especializado en desarrollo frontend y backend con tecnologías modernas.',
     'hero.viewProjects': 'Ver Proyectos',
     'hero.contact': 'Contactar',
@@ -74,7 +74,7 @@ const translations: Translations = {
     
     // Hero Section
     'hero.greeting': 'Hi! I\'m',
-    'hero.title': 'Full Stack Developer',
+    'hero.title': 'AI & Software Consultant',
     'hero.description': 'Passionate about creating exceptional web experiences and innovative technological solutions. Specialized in frontend and backend development with modern technologies.',
     'hero.viewProjects': 'View Projects',
     'hero.contact': 'Contact Me',
@@ -84,11 +84,11 @@ const translations: Translations = {
     'about.paragraph1': 'I\'m a full stack developer with experience in building modern and scalable web applications. I love transforming ideas into digital products that solve real problems.',
     'about.paragraph2': 'With a focus on code quality and best practices, I constantly work on improving my skills and staying up to date with the latest technologies in the web ecosystem.',
     'about.paragraph3': 'When I\'m not coding, I enjoy learning new technologies, contributing to open source projects, and sharing knowledge with the developer community.',
-    'about.stat1Value': '3+',
+    'about.stat1Value': '4+',
     'about.stat1Label': 'Years of Experience',
-    'about.stat2Value': '20+',
+    'about.stat2Value': '50+',
     'about.stat2Label': 'Completed Projects',
-    'about.stat3Value': '10+',
+    'about.stat3Value': '20+',
     'about.stat3Label': 'Technologies',
     
     // Skills Section
