@@ -31,11 +31,11 @@ const translations: Translations = {
     'about.paragraph1': 'Soy un desarrollador full stack con experiencia en la creación de aplicaciones web modernas y escalables. Me encanta transformar ideas en productos digitales que resuelvan problemas reales.',
     'about.paragraph2': 'Con un enfoque en la calidad del código y las mejores prácticas, trabajo constantemente en mejorar mis habilidades y mantenerme actualizado con las últimas tecnologías del ecosistema web.',
     'about.paragraph3': 'Cuando no estoy programando, disfruto aprender nuevas tecnologías, contribuir a proyectos open source y compartir conocimiento con la comunidad de desarrolladores.',
-    'about.stat1Value': '3+',
+    'about.stat1Value': '4+',
     'about.stat1Label': 'Años de Experiencia',
-    'about.stat2Value': '20+',
+    'about.stat2Value': '50+',
     'about.stat2Label': 'Proyectos Completados',
-    'about.stat3Value': '10+',
+    'about.stat3Value': '20+',
     'about.stat3Label': 'Tecnologías',
     
     // Skills Section
