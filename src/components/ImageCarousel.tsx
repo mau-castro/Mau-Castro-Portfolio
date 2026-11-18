@@ -1,112 +1,73 @@
 import { useState } from 'react';
+import { useLanguage } from '../contexts/useLanguage';
 
 interface ImageCarouselProps {
   images: string[];
   alt: string;
+  fit?: 'cover' | 'contain';
+  cover?: { src: string; logo?: string; alt: string };
+  previewIndex?: number;
 }
 
-const ImageCarousel = ({ images, alt }: ImageCarouselProps) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+const ImageCarousel = ({ images, alt, fit = 'cover', cover, previewIndex }: ImageCarouselProps) => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [alternateReady, setAlternateReady] = useState(false);
+  const { t } = useLanguage();
+  const slides = cover ? [cover.src, ...images] : images;
+  const isPreview = previewIndex !== undefined;
+  const currentIndex = isPreview ? (alternateReady ? previewIndex : 0) : selectedIndex;
 
-  const goToPrevious = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
-  const goToNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index);
+  const move = (direction: number) => {
+    setSelectedIndex(index => (index + direction + slides.length) % slides.length);
   };
 
   return (
-    // Use a fixed aspect ratio so all images render the same size
-    <div className="relative w-full bg-gray-200 dark:bg-gray-800 rounded-lg overflow-hidden group">
-      {/* Aspect ratio container (16:9) - adjust with Tailwind `aspect-*` utilities if available */}
-      <div className="relative w-full aspect-video bg-gray-200 dark:bg-gray-800">
-        {/* Stack all images absolutely and transition opacity for crossfade */}
-        {images.map((src, index) => (
-          <img
-            key={index}
-            src={src}
-            alt={`${alt} - ${index + 1}`}
-            className={`absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-500 ${
-              index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
-            }`}
-          />
+    <div className="project-gallery">
+      <div className="gallery-stage" data-fit={fit}>
+        {slides.map((src, index) => (
+          <div
+            key={src}
+            className="gallery-slide"
+            aria-hidden={index !== currentIndex}
+            data-current={index === currentIndex}
+            data-cover={Boolean(cover && index === 0)}
+          >
+            <img
+              src={src}
+              alt={(index === 0 && cover?.alt) || (slides.length > 1 ? `${alt} – ${index + 1}` : alt)}
+              loading="lazy"
+              onLoad={isPreview && index === 1 ? () => setAlternateReady(true) : undefined}
+            />
+            {index === 0 && cover?.logo && (
+              <img className="gallery-cover-logo" src={cover.logo} alt="" loading="lazy" />
+            )}
+          </div>
         ))}
-
-        {/* Gradient Overlays for better button visibility (non-blocking) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       </div>
 
-      {/* Navigation Arrows */}
-      {images.length > 1 && (
-        <>
-          {/* Previous Button */}
-          <button
-            onClick={goToPrevious}
-            className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform hover:scale-110 z-20 pointer-events-auto"
-            aria-label="Previous image"
-          >
-            <svg
-              className="w-6 h-6 text-gray-800 dark:text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
+      {!isPreview && slides.length > 1 && (
+        <div className="gallery-controls" role="group" aria-label={alt}>
+          <button type="button" onClick={() => move(-1)} aria-label={t('projects.previousImage')}>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M19 12H5m6 6-6-6 6-6" />
             </svg>
           </button>
-
-          {/* Next Button */}
-          <button
-            onClick={goToNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform hover:scale-110 z-20 pointer-events-auto"
-            aria-label="Next image"
-          >
-            <svg
-              className="w-6 h-6 text-gray-800 dark:text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
+          <div className="gallery-index">
+            {slides.map((src, index) => (
+              <button
+                key={src}
+                type="button"
+                aria-current={index === currentIndex}
+                aria-label={`${t('projects.goToImage')} ${index + 1}`}
+                onClick={() => setSelectedIndex(index)}
               />
+            ))}
+          </div>
+          <button type="button" onClick={() => move(1)} aria-label={t('projects.nextImage')}>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14m-6-6 6 6-6 6" />
             </svg>
           </button>
-        </>
-      )}
-
-      {/* Dots Indicator */}
-      {images.length > 1 && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-          {images.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex
-                  ? 'bg-white w-8'
-                  : 'bg-white/50 hover:bg-white/75'
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
         </div>
       )}
     </div>

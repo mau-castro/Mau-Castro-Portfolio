@@ -1,4 +1,15 @@
 import type { Project } from '../components/ProjectCard';
+import { aedeCase, erpCase, localAiCase, memoryGendaCase } from './projectCases';
+
+import photoSwiperCover from '../assets/Proyectos/PhotoSwiper/Portada.webp';
+import photoSwiperLogo from '../assets/Proyectos/PhotoSwiper/Logo.png';
+import photoSwiperTrash from '../assets/Proyectos/PhotoSwiper/Papelera.png';
+import memoryGendaCover from '../assets/Proyectos/MemoryGenda/Portada.webp';
+import memoryGendaLogo from '../assets/Proyectos/MemoryGenda/Logo.svg';
+import memoryGendaWatch from '../assets/Proyectos/MemoryGenda/GrabacionWear.png';
+import memoryGendaSummary from '../assets/Proyectos/MemoryGenda/EditorResumen.png';
+import aiOfficeCover from '../assets/Proyectos/OficinaIA/Portada.webp';
+import aiOfficeViewer from '../assets/Proyectos/OficinaIA/Visor.jpg';
 
 // Imágenes de SAVI
 import saviImg1 from '../assets/Proyectos/SAVI/Imagen1.png';
@@ -46,7 +57,7 @@ import aiAgentImg1 from '../assets/Proyectos/AIAgent/Imagen1.png';
 import aiAgentImg2 from '../assets/Proyectos/AIAgent/imagen2.png';
 
 const saviImages = [saviImg1, saviImg2, saviImg3, saviImg4, saviImg5];
-const companyErpImages = [companyErpImg1, companyErpImg2, companyErpImg3, companyErpImg4, companyErpImg5];
+const companyErpImages = [companyErpImg4, companyErpImg5, companyErpImg2, companyErpImg3, companyErpImg1];
 const aedeImages = [aedeImg1, aedeImg2, aedeImg3, aedeImg4, aedeImg5];
 const platafideImages = [platafideImg1];
 const scrapBancoImages = [scrapBancoImg1, scrapBancoImg2];
@@ -57,8 +68,98 @@ const aiAgentImages = [aiAgentImg1, aiAgentImg2];
 
 export const sampleProjects: Project[] = [
   {
+    id: 10,
+    title: { es: 'PhotoSwiper', en: 'PhotoSwiper' },
+    summary: {
+      es: 'Revisión de la galería con gestos, gestión de espacio y progreso guardado en el teléfono.',
+      en: 'Swipe through your gallery, manage storage, and save your progress on the phone.',
+    },
+    description: {
+      es: 'App Android para revisar la galería con gestos. Desliza para conservar una foto o marcarla para revisión. El borrado requiere una confirmación posterior. Funciona sin conexión, guarda el progreso en el teléfono e incorpora niveles y logros. El rendimiento del inicio y del desplazamiento se midió con Android Macrobenchmark.',
+      en: 'Android app for reviewing your photo gallery with swipe gestures. Swipe to keep a photo or mark it for review. Deleting photos requires a separate confirmation. The app works offline, saves progress on the phone, and includes levels and achievements. Startup and scrolling performance were measured with Android Macrobenchmark.',
+    },
+    cover: {
+      src: photoSwiperCover,
+      logo: photoSwiperLogo,
+      alt: {
+        es: 'Logotipo de PhotoSwiper junto a tres fotografías impresas',
+        en: 'PhotoSwiper logo beside three printed photographs',
+      },
+    },
+    images: [photoSwiperTrash],
+    imageFit: 'contain',
+    technologies: [
+      { name: 'Kotlin', color: 'purple' },
+      { name: 'Jetpack Compose', color: 'green' },
+      { name: 'MediaStore', color: 'cyan' },
+      { name: 'Room', color: 'blue' },
+      { name: 'Macrobenchmark', color: 'indigo' },
+    ],
+    category: 'mobile',
+  },
+  {
+    id: 11,
+    title: { es: 'MemoryGenda', en: 'MemoryGenda' },
+    caseStudy: memoryGendaCase,
+    description: {
+      es: 'Agenda de voz para Android y Wear OS. Graba desde el reloj o el celular y sincroniza el audio por segmentos del reloj al teléfono. La app transcribe en el dispositivo con modelos locales y ofrece un modelo opcional, Qwen3, para proponer títulos y resúmenes que puedes revisar y editar antes de guardar.',
+      en: 'Voice notebook for Android and Wear OS. Record on the watch or phone and sync audio segments from the watch to the phone. The app transcribes on-device with local models and offers an optional Qwen3 model to suggest titles and summaries that you can review and edit before saving.',
+    },
+    cover: {
+      src: memoryGendaCover,
+      logo: memoryGendaLogo,
+      alt: {
+        es: 'Logotipo de MemoryGenda junto a un cuaderno y un reloj con una onda de audio',
+        en: 'MemoryGenda logo beside a notebook and a watch displaying an audio waveform',
+      },
+    },
+    images: [memoryGendaWatch, memoryGendaSummary],
+    imageFit: 'contain',
+    technologies: [
+      { name: 'Kotlin', color: 'purple' },
+      { name: 'Jetpack Compose', color: 'green' },
+      { name: 'Wear OS Data Layer', color: 'cyan' },
+      { name: 'Room', color: 'blue' },
+      { name: 'whisper.cpp', color: 'indigo' },
+      { name: 'Qwen3', color: 'pink' },
+    ],
+    category: 'mobile',
+  },
+  {
+    id: 12,
+    title: { es: 'Oficina de 3 IAs', en: 'Three-Agent AI Office' },
+    summary: {
+      es: 'Experimento que conecta tres agentes para resolver problemas por turnos y seguirlos en un visor.',
+      en: 'An experiment that connects three agents to solve problems in turns, with a viewer to follow along.',
+    },
+    description: {
+      es: 'Prototipo experimental que conecta un modelo local en Ollama con Antigravity CLI y Codex CLI para resolver un problema por turnos. Un orquestador en Python comparte el historial entre los tres agentes y registra cada intervención. Un visor web permite seguir las rondas y las alertas de comprensión durante el experimento.',
+      en: 'Experimental prototype that connects a local Ollama model with Antigravity CLI and Codex CLI to solve a problem in turns. A Python orchestrator shares the conversation history among the three agents and logs every turn. A web viewer shows rounds and comprehension alerts as the experiment runs.',
+    },
+    cover: {
+      src: aiOfficeCover,
+      alt: {
+        es: 'Tres terminales conectadas a una mesa central, con los logos de Ollama, Antigravity y Codex en sus pantallas',
+        en: 'Three terminals connected to a central table, with the Ollama, Antigravity, and Codex logos on their screens',
+      },
+    },
+    images: [aiOfficeViewer],
+    imageFit: 'contain',
+    technologies: [
+      { name: 'Python', color: 'yellow' },
+      { name: 'Ollama', color: 'indigo' },
+      { name: 'Antigravity CLI', color: 'blue' },
+      { name: 'Codex CLI', color: 'green' },
+    ],
+    category: 'ia',
+  },
+  {
     id: 1,
     title: { es: 'SAVI', en: 'SAVI' },
+    summary: {
+      es: 'Punto de venta para pequeños negocios con inventario, ventas y permisos de usuario.',
+      en: 'A point-of-sale system for small businesses with inventory, sales, and user permissions.',
+    },
     description: {
       es:
         'Plataforma diseñada como un punto de venta funcional para PYMES y negocios independientes. El sistema incluye un módulo de gestión de inventario y ventas que se actualiza automáticamente en tiempo real conforme se registran las transacciones. Además, cuenta con un sistema de administración de usuarios y roles, permitiendo una gestión eficiente y segura del entorno operativo.',
@@ -77,7 +178,8 @@ export const sampleProjects: Project[] = [
   },
   {
     id: 2,
-    title: { es: 'ERP Interno Para Compañia', en: 'Company ERP' },
+    title: { es: 'ERP Interno', en: 'Internal ERP' },
+    caseStudy: erpCase,
     description: {
       es:
         'ERP Interno Modular - Sistema de Gestión Empresarial. Plataforma empresarial escalable desarrollada con arquitectura modular para la gestión integral de procesos organizacionales. Incluye módulo de gestión de proyectos con organización jerárquica (espacios, proyectos, tareas y subtareas), sistema de autenticación y usuarios con gestión completa de permisos por departamento, y servicio de notificaciones integrado con SMTP2GO. Arquitectura técnica con Backend en FastAPI (Python), Frontend en React + TypeScript + Vite + Tailwind CSS, y PostgreSQL como base de datos, desplegado en Render.',
@@ -98,6 +200,7 @@ export const sampleProjects: Project[] = [
   {
     id: 3,
     title: { es: 'Plataforma AEDE', en: 'AEDE Platform' },
+    caseStudy: aedeCase,
     description: {
       es:
         'Plataforma web empresarial desarrollada para la Agencia Estatal de Desarrollo Energético (AEDE), diseñada para mostrar a la ciudadania indicadores de energía importantes del Estado de Chihuahua. Integra módulos de registro con códigos QR, verificación de asistencia en tiempo real de eventos y automatizada de eventos de gran escala como el Foro de Energía 2025.',
@@ -118,6 +221,10 @@ export const sampleProjects: Project[] = [
   {
     id: 4,
     title: { es: 'Plataforma Interna Fideapech', en: 'Fideapech Internal Platform' },
+    summary: {
+      es: 'Plataforma interna para automatizar contratos y digitalizar solicitudes de viáticos y vacaciones.',
+      en: 'An internal platform to automate contracts and digitize travel and leave requests.',
+    },
     description: {
       es:
         'Plataforma web empresarial desarrollada para Fideapech diseñada para automatizar y digitalizar procesos como la automatización de contratos, proceso digital de solicitud de viaticos y vacaciones, gracias a esto se pudo agilizar la entrega de creditos en un 800%. *No se cuentan con más fotografias por temas de privacidad y seguridad de la empresa.',
@@ -138,6 +245,10 @@ export const sampleProjects: Project[] = [
   {
     id: 5,
     title: { es: 'Scraping Estados de cuentas bancarios', en: 'Scraping Bank Statements' },
+    summary: {
+      es: 'Librería Python que convierte movimientos de estados de cuenta en PDF a datos estructurados.',
+      en: 'A Python library that converts PDF bank statement transactions into structured data.',
+    },
     description: {
       es:
         'Librería Python modular para extraer movimientos de estados de cuenta bancarios en PDF y convertirlos en datos estructurados. Procesa automáticamente PDFs de 9 bancos mexicanos (Afirme, BBVA, BanBajío, Banorte, BanRegio, Hey Banco, Inbursa, Santander, Scotiabank) extrayendo tablas y campos clave como fecha, descripción, cargo/abono y saldo. Cada banco tiene su propio módulo adaptable, facilitando la incorporación de nuevos formatos. Utiliza pdfplumber y pymupdf para lectura de PDFs, y pandas para normalización de datos. El resultado es exportable a CSV o integrable en pipelines ETL, reduciendo horas de trabajo manual en conciliación y reporting financiero.',
@@ -157,9 +268,10 @@ export const sampleProjects: Project[] = [
   {
     id: 6,
     title: {
-      es: 'AI Agent Local con RAG',
+      es: 'Agente local de IA con RAG',
       en: 'Local AI Agent with RAG',
     },
+    caseStudy: localAiCase,
     description: {
       es:
         'Chatbot conversacional con arquitectura RAG ejecutada de forma local mediante Ollama, diseñado para responder preguntas con contexto documental y reducir alucinaciones. El sistema integra pipeline de ingestión, limpieza y fragmentación de documentos, generación de embeddings semánticos y recuperación por similitud en Qdrant, con control de relevancia para filtrar contexto ruidoso. Incluye API en FastAPI, persistencia de conversaciones, panel de entrenamiento para carga y administración de documentos, soporte de múltiples formatos (incluyendo OCR para PDFs escaneados) y una capa de agente con tools extensibles.',
@@ -183,6 +295,10 @@ export const sampleProjects: Project[] = [
   {
     id: 7,
     title: { es: 'Predicción de Clasificación de Gliomas (AI/MLOps)', en: 'Glioma Grade Classification (AI/MLOps)' },
+    summary: {
+      es: 'API de clasificación del grado de gliomas con seguimiento y versionado de modelos en MLflow.',
+      en: 'An API for glioma grade classification with model tracking and versioning in MLflow.',
+    },
     description: {
       es:
         'API y conjunto de prácticas MLOps para la clasificación automática del grado de gliomas (bajo/alto) basada en datos clínicos y mutaciones genéticas. No es una plataforma de usuario completa: el proyecto está pensado como una API reproducible y rastreable que ofrece endpoints para inferencia, gestión de modelos y registro de experimentos. Incluye un pipeline (preprocesamiento, entrenamiento y validación) con MLflow para seguimiento y versionado. Modelos usados: Decision Tree (precisión reportada: 95%), Random Forest y Logistic Regression. La API se implementa con FastAPI y el servicio se empaqueta en Docker para despliegue portátil. Se incorporan pruebas unitarias (ipytest) y prácticas de gobernanza y privacidad (GDPR/CCPA) para manejo seguro de datos clínicos.',
@@ -208,6 +324,10 @@ export const sampleProjects: Project[] = [
   {
     id: 8,
     title: { es: 'Chatbot Especializado en Farmacología (LLM + RAG)', en: 'Pharmacology Chatbot (LLM + RAG)' },
+    summary: {
+      es: 'Asistente que recupera fragmentos de documentación técnica de farmacología para responder preguntas.',
+      en: 'An assistant that retrieves passages from technical pharmacology documents to answer questions.',
+    },
     description: {
       es:
         'Sistema conversacional Q&A diseñado para consultar información técnica de farmacología a partir de documentación interna. Implementa una arquitectura Retrieval-Augmented Generation (RAG) que recupera fragmentos relevantes de documentos y los utiliza como contexto para un LLM, asegurando respuestas fundamentadas y reduciendo alucinaciones. El pipeline incluye ingestión y chunking de PDFs, generación de embeddings semánticos, almacenamiento en Chroma, y un LLM (google/flan-t5-large vía Hugging Face Pipeline) con un PromptTemplate que obliga a responder solo cuando el contexto es suficiente. Interfaz de prueba con Gradio. Limitación conocida: flan-t5-large tiene límite de ~512 tokens de entrada, lo que puede afectar respuestas en contextos muy largos.',
@@ -234,6 +354,10 @@ export const sampleProjects: Project[] = [
       es: 'Predicción de brotes de sarampión en México (2010-2023)',
       en: 'Prediction of Measles Outbreaks in Mexico (2010-2023)',
     },
+    summary: {
+      es: 'Proyecto de aprendizaje automático para explorar el pronóstico de brotes con datos públicos.',
+      en: 'A machine learning project exploring outbreak forecasting with public data.',
+    },
     description: {
       es:
         'El sarampión, a pesar de estar incluido en los programas de vacunación, continúa representando una amenaza debido a la disminución en la cobertura de vacunación y la movilidad de la población. El objetivo fue desarrollar un modelo de Machine Learning capaz de anticipar brotes epidemiológicos utilizando datos públicos disponibles de manera responsable y acorde a su alcance real. Se busca apoyar la toma de decisiones preventivas que ayuden a evitar muertes y complicaciones en la población más vulnerable (niños menores de 5 años).',
@@ -250,4 +374,14 @@ export const sampleProjects: Project[] = [
     ],
     category: 'ia',
   },
+];
+
+const featuredCases = [erpCase, localAiCase, memoryGendaCase];
+const initialFeaturedProjects = featuredCases.flatMap(caseStudy =>
+  sampleProjects.filter(project => project.caseStudy === caseStudy),
+);
+
+export const projectRotation = [
+  ...initialFeaturedProjects,
+  ...sampleProjects.filter(project => !initialFeaturedProjects.includes(project)),
 ];

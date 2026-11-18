@@ -1,117 +1,29 @@
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/useLanguage';
 
-interface Skill {
-  name: string;
-  level: number; // 0-100
-  icon?: string;
-}
-
-interface SkillCategory {
-  title: string;
-  skills: Skill[];
-}
+const skillGroups = [
+  { title: 'skills.frontend', skills: ['React + Vite', 'TypeScript', 'JavaScript', 'CSS / Sass', 'Tailwind CSS'] },
+  { title: 'skills.backend', skills: ['Python', 'FastAPI', 'Flask', 'MySQL', 'PostgreSQL', 'scikit-learn'] },
+  { title: 'skills.mobile', skills: ['Kotlin', 'Jetpack Compose', 'Wear OS', 'Room'] },
+  { title: 'skills.tools', skills: ['Git', 'VS Code', 'Linux', 'Nginx', 'Docker', 'AWS, GCP, Azure'] },
+];
 
 const SkillsSection = () => {
-  const { t, language } = useLanguage();
-
-  // Puedes personalizar estas habilidades según tu CV
-  const skillCategories: SkillCategory[] = [
-    {
-      title: t('skills.frontend'),
-      skills: [
-        { name: 'React + Vite', level: 90 },
-        { name: 'JavaScript', level: 90 },
-        { name: 'SASS/CSS', level: 90 },
-        { name: 'TypeScript', level: 85 },
-        { name: 'Tailwind CSS', level: 85 },
-      ],
-    },
-    {
-      title: t('skills.backend'),
-      skills: [
-        { name: 'Python', level: 90 },
-        { name: 'Flask', level: 80 },
-        { name: 'FastAPI', level: 80 },
-        { name: 'MySQL', level: 80 },
-        { name: 'SkLearn', level: 70 },
-      ],
-    },
-    {
-      title: t('skills.tools'),
-      skills: [
-        { name: 'Git', level: 90 },
-        { name: 'VS Code', level: 95 },
-        { name: 'Linux', level: 85 },
-        { name: 'Nginx', level: 85 },
-        { name: 'Docker', level: 75 },
-        { name: 'Cloud Services (AWS, GCP, Azure)', level: 70 },
-      ],
-    },
-  ];
+  const { t } = useLanguage();
 
   return (
-    <section className="py-20 px-6 bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
-      <div className="container mx-auto max-w-6xl">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            {t('skills.title')}
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            {t('skills.subtitle')}
-          </p>
-        </div>
-
-        {/* Skills Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {skillCategories.map((category, categoryIndex) => (
-            <div
-              key={categoryIndex}
-              className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-            >
-              {/* Category Title */}
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
-                <span className="w-2 h-8 bg-gradient-to-b from-blue-600 to-purple-600 rounded-full"></span>
-                {category.title}
-              </h3>
-
-              {/* Skills List */}
-              <div className="space-y-5">
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex}>
-                    {/* Skill Name and Level */}
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-gray-700 dark:text-gray-300 font-medium">
-                        {skill.name}
-                      </span>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {skill.level}%
-                      </span>
-                    </div>
-
-                    {/* Progress Bar */}
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-blue-600 to-purple-600 rounded-full transition-all duration-1000 ease-out"
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Additional Info */}
-        <div className="mt-12 text-center">
-          <p className="text-gray-600 dark:text-gray-400">
-            {t('skills.learning')}{' '}
-            <span className="font-semibold text-blue-600 dark:text-blue-400">
-              AWS, GCP, Azure Cloud, {language === 'es' ? 'IA y más' : 'AI and more'}...
-            </span>
-          </p>
-        </div>
+    <section id="skills" className="page-wrap skills-section" aria-labelledby="skills-title">
+      <div className="section-heading">
+        <h2 id="skills-title">{t('skills.title')}</h2>
+      </div>
+      <div className="skills-grid">
+        {skillGroups.map(group => (
+          <div key={group.title}>
+            <h3>{t(group.title)}</h3>
+            <ul>
+              {group.skills.map(skill => <li key={skill}>{skill}</li>)}
+            </ul>
+          </div>
+        ))}
       </div>
     </section>
   );

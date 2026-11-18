@@ -1,6 +1,7 @@
-import ImageCarousel from './ImageCarousel';
-import TechBadge from './TechBadge';
-import { useLanguage } from '../contexts/LanguageContext';
+import ProjectMedia from './ProjectMedia';
+import { useLanguage } from '../contexts/useLanguage';
+import type { ProjectCaseStudy } from '../data/projectCases';
+import { siteUrl } from '../routes';
 
 export interface Technology {
   name: string;
@@ -12,55 +13,47 @@ export interface LocalizedString {
   en: string;
 }
 
+export type ProjectCategory = 'fullstack' | 'mobile' | 'apis' | 'ia';
+
 export interface Project {
   id: number;
   title: LocalizedString;
   description: LocalizedString;
+  summary?: LocalizedString;
+  caseStudy?: ProjectCaseStudy;
+  cover?: {
+    src: string;
+    logo?: string;
+    alt: LocalizedString;
+  };
   images: string[];
+  imageFit?: 'cover' | 'contain';
   technologies: Technology[];
-  category: 'fullstack' | 'apis' | 'ia';
+  category: ProjectCategory;
 }
 
-interface ProjectCardProps {
-  project: Project;
-}
-
-const ProjectCard = ({ project }: ProjectCardProps) => {
+const ProjectCard = ({ project }: { project: Project }) => {
   const { language, t } = useLanguage();
+  const title = project.title[language];
+
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-      <div className="grid md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 p-4 sm:p-5 md:p-6">
-        {/* Image Carousel Section */}
-        <div className="h-64 md:h-full min-h-[300px]">
-          <ImageCarousel images={project.images} alt={project.title[language]} />
-        </div>
-
-        {/* Content Section */}
-        <div className="flex flex-col justify-between">
-          {/* Title and Description */}
-          <div className="mb-4 md:mb-6">
-            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">
-              {project.title[language]}
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm sm:text-base">
-              {project.description[language]}
-            </p>
-          </div>
-
-          {/* Technologies */}
-          <div>
-            <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wide">
-              {t('projects.technologies')}
-            </h4>
-            <div className="flex flex-wrap gap-2">
-              {project.technologies.map((tech, index) => (
-                <TechBadge key={index} name={tech.name} color={tech.color} />
-              ))}
-            </div>
-          </div>
-        </div>
+    <article className="project-entry" aria-labelledby={`project-${project.id}`}>
+      <div className="project-copy">
+        <p className="project-category">{t(project.category)}</p>
+        <h2 id={`project-${project.id}`}>{title}</h2>
+        <p className="project-description">{project.description[language]}</p>
+        <ul className="project-stack" aria-label={t('projects.technologies')}>
+          {project.technologies.map(tech => <li key={tech.name}>{tech.name}</li>)}
+        </ul>
+        {project.caseStudy && (
+          <a className="editorial-link" href={siteUrl(project.caseStudy.path)} aria-label={`${t('projects.readCase')} · ${title}`}>
+            {t('projects.readCase')} <span aria-hidden="true">→</span>
+          </a>
+        )}
       </div>
-    </div>
+
+      <ProjectMedia project={project} />
+    </article>
   );
 };
 
